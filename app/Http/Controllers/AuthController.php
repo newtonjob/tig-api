@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\Action;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
@@ -12,7 +11,7 @@ class AuthController extends Controller
     public function __invoke(Request $request)
     {
         $response = Http::tig()->get('/', [
-            'action'   => Action::SESSION,
+            'action'   => 0,
             'email_id' => $request->email,
             'pass_key' => $request->password,
         ])->object();
