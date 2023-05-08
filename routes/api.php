@@ -4,7 +4,7 @@ use App\Http\Controllers\AirtimeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BundleController;
 use App\Http\Controllers\DataController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ShowTransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/auth/token',  AuthController::class)->name('auth.token');
-Route::post('/airtime',     AirtimeController::class)->name('airtime');
-Route::post('/data',        DataController::class)->name('data');
-Route::post('/bundles',     BundleController::class)->name('data');
+Route::post('/auth/token',       AuthController::class)->name('auth.token');
+Route::post('/airtime',          AirtimeController::class)->name('airtime');
+Route::post('/data',             DataController::class)->name('data');
+Route::get('/bundles',           BundleController::class)->name('bundles.index');
+Route::get('/transactions/{id}', ShowTransactionController::class)->name('transactions.show');
