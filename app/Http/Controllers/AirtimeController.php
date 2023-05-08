@@ -10,8 +10,6 @@ class AirtimeController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $request->validate(['bill_id' => 'in:1,18,19,20']);
-
         $response = Http::tig()->get('/', [
             'action'       => 1,
             'ex_ref_no'    => 'xxx', // Todo
