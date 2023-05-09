@@ -20,6 +20,8 @@ class AuthController extends Controller
             return Response::api($response->ex_resp_desc, status: 422);
         }
 
+        cache(["session:{$response->sessionID}:email" => $request->email]);
+
         return Response::api($response->ex_resp_desc, [
             'token' => "{$response->ex_ref_no}|{$response->sessionID}"
         ]);

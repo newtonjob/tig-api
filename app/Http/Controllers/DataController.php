@@ -12,10 +12,10 @@ class DataController extends Controller
     {
         $response = Http::tig()->get('/', [
             'action'       => 2,
-            'ex_ref_no'    => 'xxx', // Todo
-            'sessionID'    => 'xxx', // Todo
+            'ex_ref_no'    => $request->user()->ref_no,
+            'sessionID'    => $request->user()->session_id,
+            'vend_email'   => $request->user()->email,
             'trans_amount' => $request->amount,
-            'vend_email'   => $request->email, //Todo: get email from token user.
             'bill_id'      => $request->bill_id,
             'item_id'      => $request->item_id,
             'phone_numb'   => $request->phone,

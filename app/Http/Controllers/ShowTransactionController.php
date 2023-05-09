@@ -12,8 +12,9 @@ class ShowTransactionController extends Controller
     {
         $response = Http::tig()->get('/', [
             'action'    => 3,
-            'sessionID' => 'xxx', // Todo
-            'email_id'  => $request->email, //Todo: get email from token user.
+            'ex_ref_no' => $request->user()->ref_no,
+            'sessionID' => $request->user()->session_id,
+            'email_id'  => $request->user()->email,
             'trans_id'  => $id,
         ])->json();
 

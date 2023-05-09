@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\GenericUser;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,6 +23,18 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Auth::viaRequest('tig', function (Request $request) {
+            if (! str_contains($token = $request->bearerToken(), '|')) {
+                return null;
+            }
+
+            [$ref_no, $session_id] = explode('|', $token, 2);
+
+            if (! $email = cache("session:{$session_id}:email")) {
+                return null;
+            }
+
+            return new GenericUser(compact(['ref_no', 'session_id', 'email']));
+        });
     }
 }
