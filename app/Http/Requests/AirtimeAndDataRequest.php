@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 
 class AirtimeAndDataRequest extends FormRequest
@@ -50,10 +51,10 @@ class AirtimeAndDataRequest extends FormRequest
         }
 
         return Response::api($response['ex_resp_desc'], [
-            'reference'     => $response['tnx_ref'],
-            'vtu_reference' => $response['vtu_ref'],
+            'reference'     => Arr::get($response, 'tnx_ref'),
+            'vtu_reference' => Arr::get($response, 'vtu_ref'),
             'type'          => $response['trans_type'],
-            'amount'        => $response['trans_amount'],
+            'amount'        => $response['trans_amt'],
         ]);
     }
 }
