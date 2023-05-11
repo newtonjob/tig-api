@@ -16,7 +16,7 @@ class ShowTransactionController extends Controller
             'sessionID' => $request->user()->id,
             'email_id'  => $request->user()->email,
             'trans_id'  => $id,
-        ])->json();
+        ])->json(0);
 
         return Response::api('Transaction status retrieved', $response);
     }
