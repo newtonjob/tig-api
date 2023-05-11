@@ -28,13 +28,13 @@ class AuthServiceProvider extends ServiceProvider
                 return null;
             }
 
-            [$ref_no, $session_id] = explode('|', $token, 2);
+            [$ref_no, $id] = explode('|', $token, 2);
 
-            if (! $email = cache("session:{$session_id}:email")) {
+            if (! $email = cache("session:{$id}:email")) {
                 return null;
             }
 
-            return new GenericUser(compact(['ref_no', 'session_id', 'email']));
+            return new GenericUser(compact(['ref_no', 'id', 'email']));
         });
     }
 }
