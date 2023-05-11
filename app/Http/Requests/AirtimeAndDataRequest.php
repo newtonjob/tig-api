@@ -28,6 +28,8 @@ class AirtimeAndDataRequest extends FormRequest
             'item_id' => 'required',
             'phone'   => 'required',
         ];
+
+        // Todo: Amount is not needed for data, and item_id is not needed for airtime.
     }
 
     /**
