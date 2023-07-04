@@ -23,13 +23,11 @@ class AirtimeAndDataRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount'  => 'required',
+            'amount'  => $this->is('/airtime') ? 'required' : '',
+            'item_id' => $this->is('/data') ? 'required' : '',
             'bill_id' => 'required',
-            'item_id' => 'required',
             'phone'   => 'required',
         ];
-
-        // Todo: Amount is not needed for data, and item_id is not needed for airtime.
     }
 
     /**
