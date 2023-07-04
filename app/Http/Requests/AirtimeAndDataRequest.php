@@ -33,10 +33,10 @@ class AirtimeAndDataRequest extends FormRequest
     /**
      * Fulfill the request.
      */
-    public function fulfill($action)
+    public function fulfill()
     {
         $response = Http::tig()->get('/', [
-            'action'     => $action,
+            'action'     => $this->is('/airtime') ? 1 : 2,
             'ex_ref_no'  => $this->user()->ref_no,
             'sessionID'  => $this->user()->id,
             'vend_email' => $this->user()->email,
